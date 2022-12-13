@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Post,Category
 # Create your views here.
 
@@ -12,6 +12,10 @@ def homepage(r):
 
 def insert(r):
     if r.method == "POST":
-        pass 
+        p = PostForm(r.POST,r.FILES)
+        if p.is_valid():
+            p.save()
+            return redirect(homepage)
+
     return render(r,"insert.html",{"form":PostForm})
 

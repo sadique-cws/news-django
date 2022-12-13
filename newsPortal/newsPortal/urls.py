@@ -8,6 +8,6 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",homepage,name="homepage"),
-    path("insert/",insert, name="insertpage")
+    path("insert-post/",insert, name="insertpage")
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
