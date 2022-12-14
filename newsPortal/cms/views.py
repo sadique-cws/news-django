@@ -19,3 +19,17 @@ def insert(r):
 
     return render(r,"insert.html",{"form":PostForm})
 
+
+def viewPost(r, cat_id):
+    data = {}
+    data['category'] = Category.objects.all()
+    data['posts'] = Post.objects.filter(category=cat_id)
+    return render(r, "home.html",data)
+
+def search(r):
+    search = r.GET.get("search")
+    data = {
+        "category":Category.objects.all(), 
+        "posts":Post.objects.filter(title__contains=search)
+        }
+    return render(r, "home.html",data)
