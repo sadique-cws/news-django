@@ -26,6 +26,14 @@ def viewPost(r, cat_id):
     data['posts'] = Post.objects.filter(category=cat_id)
     return render(r, "home.html",data)
 
+
+def singlePost(r,post_id):
+    data = {}
+    data['category'] = Category.objects.all()
+    data['post'] = Post.objects.get(pk=post_id)
+    data['posts'] = Post.objects.exclude(pk=post_id)
+    return render(r, "view.html",data)
+
 def search(r):
     search = r.GET.get("search")
     data = {
